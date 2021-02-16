@@ -3,7 +3,7 @@ import {Schema, model } from 'mongoose';
 const singer = new Schema({
     name: {type:String, required:true, trim: true},
     likes: {type: Number, default:false},
-    status: {type:true,default:false},
+    status: {type:Boolean,default:false},
     
 }, {
     versionKey:false,
