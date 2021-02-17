@@ -11,14 +11,15 @@ async function getSingers(){
     }  
 }
 
-// function postSinger(singer){
-//     const res = await fetch(URI, {
-//         method: 'POST',
-//         body: singer
-//     });
-//     const data = res.json();
-//     return data;
-// }
+async function postSinger(singer){
+    const res = await fetch(URI, {
+        method: 'POST',
+        body: singer
+    });
+    const data = res.json();
+    return data;
+}
+
 document.querySelector('#singer-form')
 .addEventListener('submit', function(e) {
     e.preventDefault();
@@ -26,6 +27,11 @@ document.querySelector('#singer-form')
     const status = document.querySelector('#status').value;
     
 });
+
+
+
+
+
 
 async function init(){
     await getSingers();
