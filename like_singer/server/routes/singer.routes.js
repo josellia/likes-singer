@@ -16,6 +16,9 @@ router.post("/", async (req, res) => {
   res.json({ message: "Singer save" });
 });
 
-
+router.delete('/:id', async(req, res) => {
+  const singer = await Singer.findByIdAndDelete(req.params.id);
+  res.json({message: 'Singer deleted'});
+});
 
 export default router;

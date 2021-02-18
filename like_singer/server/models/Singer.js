@@ -1,9 +1,10 @@
 import {Schema, model } from 'mongoose';
 
 const singer = new Schema({
-    name: {type:String, required:true, trim: true},
-    likes: {type: Number, default:false},
-    status: {type:Boolean,default:false},
+    name: {type: String,  required: true,
+    trim: true},
+    likes: {type: Number, required:false},
+    
     
 }, {
     versionKey:false,
