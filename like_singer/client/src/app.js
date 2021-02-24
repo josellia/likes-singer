@@ -46,10 +46,9 @@ document.querySelector("#singer-form").addEventListener("submit", function (e) {
 
 function templateButton(singer){
   return `
-    <button class="btn btn-primary">
+    <button class="btn btn-outline-info">
         <span class="name-singer">${singer.name}</span>
-        <span class="fas fa-heart"> 0likes</span>
-        
+        <span> <i class="fas fa-heart color-heart"></i> ${singer.likes}</span>      
     </button>
   `
 }
