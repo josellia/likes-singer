@@ -18,7 +18,8 @@ function  postSinger() {
  
   const dataSinger = {
     name: name,
-    status: status
+    status: status,
+    likes:0
   };
   fetch(URI, {
     method: "POST",
@@ -33,9 +34,6 @@ function  postSinger() {
       }
      // return Promise.reject(response);
     })
-    .then(function (data) {
-      console.log(data);
-    })
     .catch(function (error) {
       console.warn("Something went wrong.", error);
     });
@@ -46,9 +44,27 @@ document.querySelector("#singer-form").addEventListener("submit", function (e) {
   postSinger();
 });
 
+function templateButton(singer){
+  return `
+    <button class="btn btn-primary">
+        <span class="name-singer">${singer.name}</span>
+        <span class="fas fa-heart"> 0likes</span>
+        
+    </button>
+  `
+}
+
+
+function render(){
+ const singerCard = document.querySelector('#singer-cards');
+singerCard.innerHTML =  singers.map((singer) => {
+   return templateButton(singer)
+ })
+}
 
 async function init() {
   await getSingers();
+  render();
 }
 
 init();
