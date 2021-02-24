@@ -12,11 +12,13 @@ async function getSingers() {
   }
 }
 
-function postSinger() {
+function  postSinger() {
   const name = document.querySelector("#name").value;
+  const status = document.querySelector('#status').checked;
  
   const dataSinger = {
     name: name,
+    status: status
   };
   fetch(URI, {
     method: "POST",
@@ -29,7 +31,7 @@ function postSinger() {
       if (response.ok) {
         return response.json();
       }
-      return Promise.reject(response);
+     // return Promise.reject(response);
     })
     .then(function (data) {
       console.log(data);
@@ -41,12 +43,6 @@ function postSinger() {
 
 document.querySelector("#singer-form").addEventListener("submit", function (e) {
   e.preventDefault();
-  // const name = document.querySelector('#name').value;
-  // const status = document.querySelector('#status').value;
-
-  // const formData = new FormData();
-  // formData.append('name', name);
-  // formData.append('status', status);
   postSinger();
 });
 
