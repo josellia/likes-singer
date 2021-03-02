@@ -16,6 +16,17 @@ router.post("/", async (req, res) => {
   res.json({ message: "Singer save" });
 });
 
+router.post("/:id", async(req, res) => {
+ const idSinger = await Singer.findOne({_id: req.params.id});
+ if(idSinger) {
+   idSinger.likes =  idSinger.likes + 1;
+   await idSinger.save();
+   res.json({likes: idSinger.likes});
+ }else{
+   res.status(500).json({error: 'Internal error'});
+ }
+});
+
 router.delete('/:id', async(req, res) => {
   const singer = await Singer.findByIdAndDelete(req.params.id);
   res.json({message: 'Singer deleted'});

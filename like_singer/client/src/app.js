@@ -12,7 +12,7 @@ async function getSingers() {
   }
 }
 
-function  postSinger() {
+function  createSinger() {
   const name = document.querySelector("#name").value;
   const status = document.querySelector('#status').checked;
  
@@ -39,14 +39,46 @@ function  postSinger() {
     });
 }
 
+function saveLikes(id) {
+
+  fetch(`${URI}/${id}`, {
+    method: "POST",
+    body: JSON.stringify({id}),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+
+  .then(function(res){
+    if(res.ok){
+      return res.json();
+    }
+  })
+  .catch(function(error){
+    console.log("Something went wrong", error);
+  });
+}
+
+
 document.querySelector("#singer-form").addEventListener("submit", function (e) {
   e.preventDefault();
-  postSinger();
+  createSinger();
 });
+
+function handleButton(singerName){
+  singers.forEach((singer) => {
+    if(singer.name === singerName){
+      singer.likes = singer.likes + 1;
+      console.log(singer);
+      saveLikes(singer._id);
+    } 
+    render();
+  })
+}
 
 function templateButton(singer){
   return `
-    <button class="btn btn-outline-info">
+    <button class="btn btn-outline-info" onclick="handleButton('${singer.name}')">
         <span class="name-singer">${singer.name}</span>
         <span> <i class="fas fa-heart color-heart"></i> ${singer.likes}</span>      
     </button>
