@@ -63,6 +63,7 @@ function saveLikes(id) {
 document.querySelector("#singer-form").addEventListener("submit", function (e) {
   e.preventDefault();
   createSinger();
+  render();
 });
 
 function handleButton(singerName){
